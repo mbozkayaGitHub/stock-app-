@@ -4,10 +4,12 @@ import Avatar from "@mui/material/Avatar";
 import LockIcon from "@mui/icons-material/Lock";
 import image from "../assets/result.svg";
 import Grid from "@mui/material/Grid";
-
+import { registerSchema } from "../components/RegisterForm";
 import { Link, useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import { Formik } from "formik";
+import LoginForm from "../components/LoginForm";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -50,7 +52,20 @@ const Register = () => {
           >
             Register
           </Typography>
-
+           
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={registerSchema}
+            onSubmit={(values, actions) => {
+            Register({...values,password2:values.password}) ;
+         console.log(values);
+          
+              actions.resetForm()
+              actions.setSubmitting(false)
+            }}
+            component={(props) => <LoginForm {...props} />}
+          ></Formik>
+           
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Link to="/">Do you have an account?</Link>
           </Box>

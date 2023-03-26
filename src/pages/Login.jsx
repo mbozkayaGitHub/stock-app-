@@ -17,10 +17,10 @@ const Login = () => {
   const { login } = useAuthCall();
 
   const loginScheme = object({
-    email: string()
+       email: string()
       .email("Lutfen valid bir email giriniz")
       .required("Email zorunludur"),
-    password:string()
+       password:string()
       .required("password zorunludur")
       .min(8, "password en az 8 karakter olmalıdır")
       .max(20, "password en fazla 20 karakter olmalıdır")
