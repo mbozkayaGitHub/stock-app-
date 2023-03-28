@@ -5,7 +5,7 @@ import { Form } from "formik"
 import { useSelector } from "react-redux"
 import { object, string } from "yup"
 
-export const loginScheme = object({
+export const loginSchema = object({
   email: string()
     .email("Lutfen valid bir email giriniz")
     .required("Email zorunludur"),

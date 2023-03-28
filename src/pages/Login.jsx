@@ -5,22 +5,20 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import LockIcon from "@mui/icons-material/Lock";
 import image from "../assets/result.svg";
-import { Link, } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
 import useAuthCall from "../hooks/useAuthCall";
-import LoginForm, { loginScheme } from "../components/LoginForm"
-
+import LoginForm, { loginSchema } from "../components/LoginForm";
+import { string, object } from "yup";
 
 const Login = () => {
-  
-
   const { login } = useAuthCall();
 
-  const loginScheme = object({
-       email: string()
+  const loginSchema = object({
+    email: string()
       .email("Lutfen valid bir email giriniz")
       .required("Email zorunludur"),
-       password:string()
+    password: string()
       .required("password zorunludur")
       .min(8, "password en az 8 karakter olmalıdır")
       .max(20, "password en fazla 20 karakter olmalıdır")
@@ -69,11 +67,11 @@ const Login = () => {
 
           <Formik
             initialValues={{ email: "", password: "" }}
-            validationSchema={loginScheme}
+            validationSchema={loginSchema}
             onSubmit={(values, actions) => {
-              login(values)
-              actions.resetForm()
-              actions.setSubmitting(false)
+              login(values);
+              actions.resetForm();
+              actions.setSubmitting(false);
             }}
             component={(props) => <LoginForm {...props} />}
           ></Formik>
