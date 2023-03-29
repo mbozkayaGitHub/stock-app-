@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector } from "react-redux";
 import useAuthCall from "../hooks/useAuthCall";
 import {blueGrey} from "@mui/material/colors"
+import { Outlet } from "react-router-dom";
 
 const drawerWidth = 200;
 
@@ -119,9 +120,9 @@ function Dashboard(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
+        
         <Toolbar />
-        
-        
+    <Outlet />
       </Box>
     </Box>
   );
