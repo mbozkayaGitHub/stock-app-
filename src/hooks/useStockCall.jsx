@@ -30,6 +30,26 @@ const useStockCall = () => {
           }
           
         };
+        const deleteStockData= async (url,id) => {
+            const BASE_URL = "https://12256.fullstack.clarusway.com/";
+            dispatch(fetchStart());
+        
+        
+        
+            try {
+           
+        
+            await axios.delete(`${BASE_URL}stock/${url}/{id}/`, {
+              headers: { Authorization: `Token ${token}` },
+            });
+             dispatch(getSuccess())
+              
+            } catch (error) {
+              console.log(error);
+              dispatch(fetchFail())
+            }
+            
+          };
   return {getStockData}
   
 }
