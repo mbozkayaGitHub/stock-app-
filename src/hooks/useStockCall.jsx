@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux";
 import { getSuccess, fetchFail, fetchStart } from "../features/stockSlice";
+import useAxios from "./useAxios";
 
 
 
@@ -10,8 +11,10 @@ const useStockCall = () => {
   
         const dispatch = useDispatch()
         const { token } = useSelector((state) => state.auth);
+        const {axiosWithToken} = useAxios()
+
         const getStockData= async (url) => {
-          const BASE_URL = "https://12256.fullstack.clarusway.com/";
+          // const BASE_URL = "https://12256.fullstack.clarusway.com/";
           dispatch(fetchStart());
       
       
@@ -19,9 +22,11 @@ const useStockCall = () => {
           try {
          
       
-          const { data } = await axios(`${BASE_URL}stock/${url}/`, {
-            headers: { Authorization: `Token ${token}` },
-          });
+          // const { data } = await axios(`${BASE_URL}stock/${url}/`, {
+          //   headers: { Authorization: `Token ${token}` },
+          // });
+          const {data} = await axiosWithToken(`stock/${url}/`)
+          console.log(data);
            dispatch(getSuccess({data, url}))
             
           } catch (error) {
@@ -31,26 +36,18 @@ const useStockCall = () => {
           
         };
         const deleteStockData= async (url,id) => {
-            const BASE_URL = "https://12256.fullstack.clarusway.com/";
-            dispatch(fetchStart());
-        
-        
-        
-            try {
-           
-        
-            await axios.delete(`${BASE_URL}stock/${url}/{id}/`, {
-              headers: { Authorization: `Token ${token}` },
-            });
-             dispatch(getSuccess())
-              
+          dispatch(fetchStart());
+        try {
+           await axiosWithToken.delete(`stock/${url}/{id}/`);
+            
+            getStockData(url)  
             } catch (error) {
               console.log(error);
               dispatch(fetchFail())
             }
             
           };
-  return {getStockData}
+  return {getStockData,deleteStockData}
   
 }
 
