@@ -4,9 +4,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import DeleteOutLineIcon from "@mui/icons-material/DeleteOutLine"
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditIcon from "@mui/icons-material/Edit"
 import useStockCall from '../hooks/useStockCall';
+import { btnStyle, flex } from '../styles/globalStyle';
 
 export default function FirmCard({firm}) {
   const {deleteStockData} =useStockCall()
@@ -32,7 +33,7 @@ export default function FirmCard({firm}) {
         </Typography>
       <CardActions sx={flex}>
        <EditIcon sx={btnStyle}/>
-       <DeleteOutLineIcon sx={btnStyle} onClick={()=> deleteStockData("firm", firm.id)}/>
+       <DeleteOutlineIcon sx={btnStyle} onClick={()=> deleteStockData("firm", firm.id)}/>
       </CardActions>
     </Card>
   );
