@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import useStockCall from "../hooks/useStockCall";
 import { useSelector } from "react-redux";
 import FirmCard from "../components/FirmCard";
+import { flex } from "../styles/globalStyle";
 // import axios from "axios";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getSuccess, fetchFail, fetchStart } from "../features/stockSlice";
@@ -43,7 +44,7 @@ const Firms = () => {
       </Typography>
       <Button variant="contained">New Firm</Button>
       {firms?.map((firm)=> (
-        <Grid container sx={}>
+        <Grid container sx={flex}>
           <Grid item key={firm.id}>
             <FirmCard firm={firm}/>
 
