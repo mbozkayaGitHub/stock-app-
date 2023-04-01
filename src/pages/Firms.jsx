@@ -1,6 +1,8 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import useStockCall from "../hooks/useStockCall";
+import { useSelector } from "react-redux";
+import FirmCard from "../components/FirmCard";
 // import axios from "axios";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getSuccess, fetchFail, fetchStart } from "../features/stockSlice";
@@ -25,11 +27,14 @@ const Firms = () => {
   //   }
   // };
    const {getStockData} = useStockCall()
+   const {firms} = useSelector((state)=> state.stock)
   useEffect(() => {
     // getFirms();
 
-    getStockData("url")
+    getStockData("firms")
   }, []);
+
+      console.log(firms);
 
   return (
     <div>
@@ -37,6 +42,14 @@ const Firms = () => {
         Firm
       </Typography>
       <Button variant="contained">New Firm</Button>
+      {firms?.map((firm)=> (
+        <Grid container sx={}>
+          <Grid item key={firm.id}>
+            <FirmCard firm={firm}/>
+
+          </Grid>
+        </Grid>
+      ))}
     </div>
   );
 };
