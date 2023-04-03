@@ -27,6 +27,8 @@ export default function FirmCard({firm}) {
         sx={{p:1, objectFit:"contain",height:"130px"}}
         image={firm?.image}
         title="firm-image"
+        component="img"
+
       />
          <Typography variant="body2" color="text.secondary">
         Phone:{firm?.phone}

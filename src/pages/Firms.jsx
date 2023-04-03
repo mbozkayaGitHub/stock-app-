@@ -43,14 +43,16 @@ const Firms = () => {
         Firm
       </Typography>
       <Button variant="contained">New Firm</Button>
-      {firms?.map((firm)=> (
+     
         <Grid container sx={flex}>
+        {firms?.map((firm)=> (
           <Grid item key={firm.id}>
             <FirmCard firm={firm}/>
 
           </Grid>
+            ))}
         </Grid>
-      ))}
+    
     </div>
   );
 };
