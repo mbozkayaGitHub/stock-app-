@@ -15,7 +15,7 @@ const axiosPublic = axios.create({
   });
 
 const axiosWithToken = axios.create({
-    baseURL: "https://12256.fullstack.clarusway.com/"
+    baseURL: "https://12256.fullstack.clarusway.com/",  headers: { Authorization: `Token ${token}` },
 
    
   });
