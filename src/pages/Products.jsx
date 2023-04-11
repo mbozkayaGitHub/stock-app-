@@ -2,15 +2,15 @@ import { Button, Grid, Typography } from "@mui/material";
 import React, { useEffect,useState } from "react";
 import useStockCall from "../hooks/useStockCall";
 import { useSelector } from "react-redux";
-import FirmCard from "../components/FirmCard";
+import ProductCard from "../components/ProductCard";
 import { flex } from "../styles/globalStyle";
-import FirmModal from "../components/modals/FirmModal";
+import ProductModal from "../components/modals/ProductModal";
 
 
 const Products = () => {
 
    const {getStockData} = useStockCall()
-   const {firms} = useSelector((state)=> state.stock)
+   const {products} = useSelector((state)=> state.stock)
    const [open, setOpen] =useState(false);
      const [info, setInfo] = useState({
     name: "",
@@ -24,23 +24,23 @@ const Products = () => {
   useEffect(() => {
 
 
-    getStockData("firms")
+    getStockData("products")
   }, []);
 
-      console.log(firms);
+
 
   return (
     <div>
       <Typography variant="h4" color="error" mb={3}>
-        Firm
+       Products
       </Typography>
-      <Button variant="contained" onClick={handleOpen}>New Firm</Button>
+      <Button variant="contained" onClick={handleOpen}>New Product</Button>
      
-     <FirmModal open={open} handleClose={handleClose} info={info} setInfo={info}/>
+     <ProductModal open={open} handleClose={handleClose} info={info} setInfo={info}/>
         <Grid container sx={flex}>
-        {firms?.map((firm)=> (
-          <Grid item key={firm.id}>
-            <FirmCard firm={firm} setOpen={setOpen} setInfo={setInfo} />
+        {products?.map((product)=> (
+          <Grid item key={product.id}>
+            <ProductCard product={product} setOpen={setOpen} setInfo={setInfo} />
 
           </Grid>
             ))}
