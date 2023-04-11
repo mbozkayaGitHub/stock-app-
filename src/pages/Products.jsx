@@ -103,7 +103,7 @@ const Products = () => {
 
     <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        rows={products}
         columns={columns}
         initialState={{
           pagination: {
