@@ -23,35 +23,50 @@ const Products = () => {
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
    const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'id', headerName: '#', minWidth: 60,headerAlign:"center",
+    align:"center", },
     {
-      field: 'firstName',
-      headerName: 'First name',
-      width: 150,
-      editable: true,
+      field: 'category',
+      headerName: ' Category',
+      headerAlign:"center",
+      align:"center",
+      minWidth: 150,
+      flex:3
     },
     {
-      field: 'lastName',
-      headerName: 'Last name',
-      width: 150,
-      editable: true,
+      field: 'brand',
+      headerName: 'Brand',
+      headerAlign:"center",
+      align:"center",
+      minWidth: 150,
+      flex:2
     },
     {
-      field: 'age',
-      headerName: 'Age',
+      field: 'name',
+      headerName: 'Name',
+      headerAlign:"center",
+      align:"center",
       type: 'number',
-      width: 110,
-      editable: true,
+      minWidth: 150,
+      flex:2
     },
     {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (params) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+      field: 'stock',
+      headerName: 'Stock',
+      headerAlign:"center",
+      align:"center",
+      minWidth: 100,
+      flex:0.7
     },
+    {
+      field: 'action',
+      headerName: 'Action',
+      headerAlign:"center",
+      align:"center",
+      type: 'number',
+      minWidth: 50,
+      flex:1
+    }
   ];
   
   const rows = [
@@ -98,7 +113,7 @@ const Products = () => {
           },
         }}
         pageSizeOptions={[5]}
-        checkboxSelection
+
         disableRowSelectionOnClick
       />
     </Box>
