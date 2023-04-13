@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux";
-import { getSuccess, fetchFail, fetchStart } from "../features/stockSlice";
+import { getSuccess, fetchFail, fetchStart,getProCatBrandSuccess } from "../features/stockSlice";
 import useAxios from "./useAxios";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
@@ -73,9 +73,23 @@ const useStockCall = () => {
               dispatch(fetchFail())
               toastErrorNotify(`${url} can not be updated`)
             }
+        const getProCatBrand= async (url,info) => {
+          dispatch(fetchStart());
+        try {
+           const [products,categories,brands] = await Promise.all([
+            axiosWithToken.get("stock/products/"),
+            axiosWithToken.get("stock/categories/"),
+            axiosWithToken.get("stock/brands/")
+           ])
+           dispatch(getProCatBrandSuccess())
+            } catch (error) {
+              console.log(error);
+              dispatch(fetchFail())
+              toastErrorNotify(`${url} can not be updated`)
+            }
             
           };
-  return {getStockData,deleteStockData,postStockData,putStockData}
+  return {getStockData,deleteStockData,postStockData,putStockData,getProCatBrand}
   
 }
 

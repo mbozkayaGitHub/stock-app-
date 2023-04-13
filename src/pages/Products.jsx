@@ -12,7 +12,7 @@ import {btnStyle} from "../styles/globalStyle"
 
 const Products = () => {
 
-   const {getStockData} = useStockCall()
+   const {getStockData,getProCatBrand} = useStockCall()
    const {deleteStockData} = useStockCall()
    const {products} = useSelector((state)=> state.stock)
    const [open, setOpen] =useState(false);
@@ -84,10 +84,10 @@ const Products = () => {
   useEffect(() => {
 
 
-    getStockData("products")
-    getStockData("categories")
-    getStockData("brands")
-   
+    // getStockData("products")
+    // getStockData("categories")
+    // getStockData("brands")
+   getProCatBrand()
   }, []);
 
 
