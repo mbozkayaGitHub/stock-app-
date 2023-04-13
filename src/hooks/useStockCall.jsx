@@ -92,5 +92,5 @@ const useStockCall = () => {
   return {getStockData,deleteStockData,postStockData,putStockData,getProCatBrand}
   
 }
-
+}
 export default useStockCall
