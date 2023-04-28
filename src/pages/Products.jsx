@@ -17,10 +17,10 @@ const Products = () => {
    const {products} = useSelector((state)=> state.stock)
    const [open, setOpen] =useState(false);
      const [info, setInfo] = useState({
+    category_id: "",
+    brand_id: "",
     name: "",
-    phone: "",
-    address: "",
-    image: "",
+
   });
    const handleOpen = () => setOpen(true)
    const handleClose = () => setOpen(false);

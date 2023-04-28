@@ -81,11 +81,11 @@ const useStockCall = () => {
             axiosWithToken.get("stock/categories/"),
             axiosWithToken.get("stock/brands/")
            ])
-           dispatch(getProCatBrandSuccess())
+           dispatch(getProCatBrandSuccess([products?.data,categories?.data,brands?.data]))
             } catch (error) {
               console.log(error);
               dispatch(fetchFail())
-              toastErrorNotify(`${url} can not be updated`)
+              toastErrorNotify(`Data can not be fetched`)
             }
             
           };
